@@ -1,6 +1,6 @@
 protocol = input("Enter Protocol: ")
 
-if message == "HTTP":
+if protocol == "HTTP":
     print("Supported")
 else:
     print("Protocol not supported")
