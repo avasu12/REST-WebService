@@ -1,3 +1,7 @@
-message = input("Write something: ")
+protocol = input("Enter Protocol: ")
 
-print(message)
+if message == "HTTP":
+    print("Supported")
+else:
+    print("Protocol not supported")
+
