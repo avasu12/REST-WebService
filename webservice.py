@@ -19,9 +19,9 @@ version = parsedRequestMessage[2]
 # Validate request
 
 if method in httpMethods:
-    print("The user would like to ", method, " ", URI, " using ", version, ".")
+    print("HTTP/1.1 501 This API isn't fully developed yet - check in later!")
 else:
     print("Method not supported or recognized")
     
 
-print("Success!")
+print("End of program")
