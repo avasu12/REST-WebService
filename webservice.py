@@ -21,7 +21,7 @@ version = parsedRequestMessage[2]
 if method in httpMethods:
     print("HTTP/1.1 501 This API isn't fully developed yet - check in later!")
 else:
-    print("Method not supported or recognized")
+    print("HTTP/1.1 400 Bad Request - your specified method isn't supported")
     
 
 print("End of program")
