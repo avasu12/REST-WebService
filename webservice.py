@@ -1,14 +1,19 @@
 import re
 
 
+# Verify if the URI is formatted correctly
+def checkURI(uri):
+    print("Under construction")
+
 # Validation variables
 
 httpMethods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "TRACE", "CONNECT"]
+URIs = ["api/v1.0/countries", "/"]
 
 # Ask for the HTTP Request
 requestMessage = input("Enter Request: ")
 
-print(requestMessage)
+
 
 # Parse request
 parsedRequestMessage = requestMessage.split(' ')
@@ -19,9 +24,11 @@ version = parsedRequestMessage[2]
 # Validate request
 
 if method in httpMethods:
-    print("HTTP/1.1 501 This API isn't fully developed yet - check in later!")
+    if URI in URIs:
+        print("HTTP/1.1 200 Success - here's your data.")
+    else:
+        print("HTTP/1.1 404 Resource not found")
 else:
     print("HTTP/1.1 400 Bad Request - your specified method isn't supported")
-    
 
-print("End of program")
+print("Thank you for using my API :)")
