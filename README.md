@@ -5,4 +5,7 @@ A REST API Web Service built with Python. Access data about macroeconomies acros
 Runs on Python 3.12.4
 
 Usage: 
-Run webservice.py
+py webservice.py
+
+Enter Request:
+GET api/v1.0/countries HTTP/1.1
