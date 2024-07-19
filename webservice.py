@@ -7,26 +7,26 @@ def checkURI(uri):
 
 # Validation variables
 
-httpMethods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "TRACE", "CONNECT"]
-URIs = ["api/v1.0/countries", "/"]
-allowedVersions = ["HTTP/0.9", "HTTP/1.0", "HTTP/1.1", "HTTP/1.2", "HTTP/2"]
+http_methods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "TRACE", "CONNECT"]
+uris = ["api/v1.0/countries", "/"]
+allowed_versions = ["HTTP/0.9", "HTTP/1.0", "HTTP/1.1", "HTTP/1.2", "HTTP/2"]
 
 # Ask for the HTTP Request
-requestMessage = input("Enter Request: ")
+request_message = input("Enter Request: ")
 
 
 
 # Parse request
-parsedRequestMessage = requestMessage.split(' ')
-method = parsedRequestMessage[0]
-URI = parsedRequestMessage[1]
-version = parsedRequestMessage[2]
+parsed_request_message = request_message.split(' ')
+method = parsed_request_message[0]
+uri = parsed_request_message[1]
+version = parsed_request_message[2]
 
 # Validate request
 
-if method in httpMethods:
-    if URI in URIs:
-        if version in allowedVersions:
+if method in http_methods:
+    if uri in uris:
+        if version in allowed_versions:
             print("HTTP/1.1 200 Success - here's your data.")
         else:
             print("HTTP/1.1 400 Bad request - your protocol & version might be incorrect")
