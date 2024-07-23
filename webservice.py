@@ -22,7 +22,7 @@ method = parsed_request_message[0]
 uri = parsed_request_message[1]
 version = parsed_request_message[2]
 
-# Validate request
+''' Validate request
 
 if method in http_methods:
     if uri in uris:
@@ -39,6 +39,13 @@ else:
 text = open('api/v1.0/countries', 'r')
 
 print(text.read())
+'''
 
+pattern = r''
+
+test_string = "My name is ..."
+response = re.match(pattern, test_string)
+
+print(response)
 
 print("Thank you for using my API :)")
