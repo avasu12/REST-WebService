@@ -40,4 +40,5 @@ text = open('api/v1.0/countries', 'r')
 
 print(text.read())
 
+
 print("Thank you for using my API :)")
