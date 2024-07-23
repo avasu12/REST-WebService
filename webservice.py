@@ -36,7 +36,7 @@ else:
     print("HTTP/1.1 405 Method not allowed - your specified method isn't supported")
 
 
-text = open('/api/countries', 'r')
+text = open('api/v1.0/countries', 'r')
 
 print(text.read())
 
