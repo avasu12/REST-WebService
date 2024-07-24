@@ -12,9 +12,11 @@ uris = ["api/v1.0/countries", "/"]
 allowed_versions = ["HTTP/0.9", "HTTP/1.0", "HTTP/1.1", "HTTP/1.2", "HTTP/2"]
 
 # Ask for the HTTP Request
-request_message = input("Enter Request: ")
+request_file = open('enter_request', 'r')
+request_message = request_file.read()
+print(request_message)
 
-
+'''
 
 # Parse request
 parsed_request_message = request_message.split(' ')
@@ -22,7 +24,7 @@ method = parsed_request_message[0]
 uri = parsed_request_message[1]
 version = parsed_request_message[2]
 
-''' Validate request
+# Validate request
 
 if method in http_methods:
     if uri in uris:
@@ -41,7 +43,7 @@ text = open('api/v1.0/countries', 'r')
 print(text.read())
 '''
 
-pattern = r''
+pattern = '...$'
 
 test_string = "My name is ..."
 response = re.match(pattern, test_string)
