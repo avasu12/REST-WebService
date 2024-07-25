@@ -2,6 +2,9 @@ import re
 from datetime import datetime
 
 
+current_datetime = datetime.utcnow()
+http_date_string = current_datetime.strftime('%a, %d %b %Y %H:%M:%S GMT')
+
 # Verify if the URI is formatted correctly
 def checkURI(uri):
     print("Under construction")
@@ -15,16 +18,29 @@ allowed_versions = ["HTTP/0.9", "HTTP/1.0", "HTTP/1.1", "HTTP/1.2", "HTTP/2"]
 # Ask for the HTTP Request
 request_file = open('enter_request', 'r')
 request_message = request_file.read()
-print(request_message)
+request_file.seek(0)
+request_line = request_file.readline()
 
-'''
+
 
 # Parse request
-parsed_request_message = request_message.split(' ')
-method = parsed_request_message[0]
-uri = parsed_request_message[1]
-version = parsed_request_message[2]
 
+# Should this be a separate module/function?
+parsed_request_line = request_line.split(' ')
+
+if len(parsed_request_line) == 3:
+    method = parsed_request_line[0]
+    uri = parsed_request_line[1]
+    version = parsed_request_line[2]
+
+    if method in http_methods:
+        print("HTTP/1.1 200 OK\nDate: ", http_date_string ,"\n\nThank you for using my API :)")
+        exit()
+else:
+    print("HTTP/1.1 400 Bad Request\nDate: ", http_date_string, "\n\n Check if your request line is correct")
+    exit()
+
+'''
 # Validate request
 
 if method in http_methods:
@@ -51,8 +67,5 @@ response = re.match(pattern, test_string)
 
 print(response)
 
-
-current_datetime = datetime.utcnow()
-http_date_string = current_datetime.strftime('%a, %d %b %Y %H:%M:%S GMT')
 
 print("HTTP/1.1 200 OK\nDate: ", http_date_string ,"\n\nThank you for using my API :)")
