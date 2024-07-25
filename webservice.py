@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 
 # Verify if the URI is formatted correctly
@@ -50,4 +51,8 @@ response = re.match(pattern, test_string)
 
 print(response)
 
-print("Thank you for using my API :)")
+
+current_datetime = datetime.utcnow()
+http_date_string = current_datetime.strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+print("HTTP/1.1 200 OK\nDate: ", http_date_string ,"\n\nThank you for using my API :)")
