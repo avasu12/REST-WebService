@@ -9,9 +9,9 @@ http_date_string = current_datetime.strftime('%a, %d %b %Y %H:%M:%S GMT')
 def checkURI(uri):
     print("Under construction")
 
-def 400_exit():
+def bad_request():
     print("HTTP/1.1 400 Bad Request\nDate: ", http_date_string, "\n\n Check if your request line is correct")
-    exit()
+    # exit()
 
 # Validation variables
 
@@ -39,11 +39,11 @@ if len(parsed_request_line) == 3:
 
     if method in http_methods:
         print("HTTP/1.1 200 OK\nDate: ", http_date_string ,"\n\nThank you for using my API :)")
-        exit()
+     #   exit()
     else:
-        400_exit()
+        bad_request()
 else:
-    400_exit()
+    bad_request()
 
 '''
 # Validate request
@@ -65,10 +65,12 @@ text = open('api/v1.0/countries', 'r')
 print(text.read())
 '''
 
-pattern = '...$'
+no_resource = '*'
+absolute_uri_pattern = '^(http://|https://)'
+absolute_path = '^/([a-zA-Z0-9._~\-%]+)(/[a-zA-Z0-9._~\-%]+)*'
 
-test_string = "My name is ..."
-response = re.match(pattern, test_string)
+test_string = "/My name is ..."
+response = re.match(absolute_path, test_string)
 
 print(response)
 
