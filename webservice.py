@@ -13,6 +13,11 @@ def bad_request():
     print("HTTP/1.1 400 Bad Request\nDate: ", http_date_string, "\n\n Check if your request line is correct")
     # exit()
 
+def OK_response():
+    print("HTTP/1.1 200 OK\nDate: ", http_date_string ,"\n\nThank you for using my API :)")
+    # exit()
+
+
 # Validation variables
 
 http_methods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "TRACE", "CONNECT"]
@@ -38,32 +43,14 @@ if len(parsed_request_line) == 3:
     version = parsed_request_line[2]
 
     if method in http_methods:
-        print("HTTP/1.1 200 OK\nDate: ", http_date_string ,"\n\nThank you for using my API :)")
-     #   exit()
+        OK_response()
     else:
         bad_request()
 else:
     bad_request()
 
-'''
+
 # Validate request
-
-if method in http_methods:
-    if uri in uris:
-        if version in allowed_versions:
-            print("HTTP/1.1 200 Success - here's your data.")
-        else:
-            print("HTTP/1.1 400 Bad request - your protocol & version might be incorrect")
-    else:
-        print("HTTP/1.1 404 Resource not found")
-else:
-    print("HTTP/1.1 405 Method not allowed - your specified method isn't supported")
-
-
-text = open('api/v1.0/countries', 'r')
-
-print(text.read())
-'''
 
 no_resource = '*'
 absolute_uri_pattern = '^(http://|https://)'
@@ -75,4 +62,3 @@ response = re.match(absolute_path, test_string)
 print(response)
 
 
-print("HTTP/1.1 200 OK\nDate: ", http_date_string ,"\n\nThank you for using my API :)")
