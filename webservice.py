@@ -9,6 +9,10 @@ http_date_string = current_datetime.strftime('%a, %d %b %Y %H:%M:%S GMT')
 def checkURI(uri):
     print("Under construction")
 
+def 400_exit():
+    print("HTTP/1.1 400 Bad Request\nDate: ", http_date_string, "\n\n Check if your request line is correct")
+    exit()
+
 # Validation variables
 
 http_methods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "TRACE", "CONNECT"]
@@ -36,9 +40,10 @@ if len(parsed_request_line) == 3:
     if method in http_methods:
         print("HTTP/1.1 200 OK\nDate: ", http_date_string ,"\n\nThank you for using my API :)")
         exit()
+    else:
+        400_exit()
 else:
-    print("HTTP/1.1 400 Bad Request\nDate: ", http_date_string, "\n\n Check if your request line is correct")
-    exit()
+    400_exit()
 
 '''
 # Validate request
