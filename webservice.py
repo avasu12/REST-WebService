@@ -6,11 +6,26 @@ current_datetime = datetime.utcnow()
 http_date_string = current_datetime.strftime('%a, %d %b %Y %H:%M:%S GMT')
 
 # Verify if the URI is formatted correctly
-def checkURI(uri):
+def check_request_uri(uri):
+    no_resource = '*'
+    absolute_uri_pattern = '^(http://|https://)'
+    absolute_path = '^/([a-zA-Z0-9._~\-%]+)(/[a-zA-Z0-9._~\-%]+)*'
+
+    test_string = "/My name is ..."
+    response = re.match(absolute_path, test_string)
+
+    print(response)
+
+    if uri == no_resource:
+        return true
+    else:
+        print("Under construction")
+
+def check_http_version(version):
     print("Under construction")
 
 def bad_request():
-    print("HTTP/1.1 400 Bad Request\nDate: ", http_date_string, "\n\n Check if your request line is correct")
+    print("HTTP/1.1 400 Bad Request\nDate: ", http_date_string, "\n\n There may be a problem with the request line.")
     # exit()
 
 def OK_response():
@@ -43,22 +58,18 @@ if len(parsed_request_line) == 3:
     version = parsed_request_line[2]
 
     if method in http_methods:
-        OK_response()
+        if check_request_uri(uri):
+            if check_http_version(version):
+                print("Request Line looks good")
+                OK_response()
+            else:
+                bad_request()
+        else:
+            bad_request()
     else:
         bad_request()
 else:
     bad_request()
 
-
-# Validate request
-
-no_resource = '*'
-absolute_uri_pattern = '^(http://|https://)'
-absolute_path = '^/([a-zA-Z0-9._~\-%]+)(/[a-zA-Z0-9._~\-%]+)*'
-
-test_string = "/My name is ..."
-response = re.match(absolute_path, test_string)
-
-print(response)
 
 
