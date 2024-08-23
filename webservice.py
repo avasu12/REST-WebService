@@ -32,6 +32,31 @@ def OK_response():
     print("HTTP/1.1 200 OK\nDate: ", http_date_string ,"\n\nThank you for using my API :)")
     # exit()
 
+def parse_request_line(request_line):
+    parsed_request_line = request_line.split(' ')
+
+    if len(parsed_request_line) == 3:
+        method = parsed_request_line[0]
+        uri = parsed_request_line[1]
+        version = parsed_request_line[2]
+
+        if method in http_methods:
+            if check_request_uri(uri):
+                if check_http_version(version):
+                    print("Request Line looks good")
+                    OK_response()
+                else:
+                    bad_request()
+            else:
+                bad_request()
+        else:
+            bad_request()
+    else:
+        bad_request()
+
+
+   
+
 
 # Validation variables
 
@@ -41,35 +66,11 @@ allowed_versions = ["HTTP/0.9", "HTTP/1.0", "HTTP/1.1", "HTTP/1.2", "HTTP/2"]
 
 # Ask for the HTTP Request
 request_file = open('enter_request', 'r')
-request_message = request_file.read()
 request_file.seek(0)
 request_line = request_file.readline()
 
 
 
-# Parse request
+# Parse request line
 
-# Should this be a separate module/function?
-parsed_request_line = request_line.split(' ')
-
-if len(parsed_request_line) == 3:
-    method = parsed_request_line[0]
-    uri = parsed_request_line[1]
-    version = parsed_request_line[2]
-
-    if method in http_methods:
-        if check_request_uri(uri):
-            if check_http_version(version):
-                print("Request Line looks good")
-                OK_response()
-            else:
-                bad_request()
-        else:
-            bad_request()
-    else:
-        bad_request()
-else:
-    bad_request()
-
-
-
+parse_request_line(request_line)
