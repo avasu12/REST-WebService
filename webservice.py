@@ -24,6 +24,14 @@ def check_request_uri(uri):
 def check_http_version(version):
     print("Under construction")
 
+def receive_request():
+    request_file = open('enter_request', 'r')
+    request_file.seek(0)
+    request_line = request_file.readline()
+    return request_line
+
+
+
 def bad_request():
     print("HTTP/1.1 400 Bad Request\nDate: ", http_date_string, "\n\n There may be a problem with the request line.")
     # exit()
@@ -65,6 +73,11 @@ def parse_request(request_line, request_headers, request_entity):
     parse_request_headers(request_headers)
     parse_request_entity(request_entity)   
 
+def process_request():
+    print("processing happens here")
+
+def respond_to_request():
+    print("200 OK")
 
 # HTTP Protocol Data
 
@@ -72,14 +85,10 @@ http_methods = ("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "TRA
 uris = ["api/v1.0/countries", "/"]
 allowed_versions = ("HTTP/0.9", "HTTP/1.0", "HTTP/1.1", "HTTP/1.2", "HTTP/2")
 
-# Ask for the HTTP Request
-request_file = open('enter_request', 'r')
-request_file.seek(0)
-request_line = request_file.readline()
 
+# Main program
 
-
-# Parse request
-
+request_line = receive_request()
 parse_request(request_line, '', '')
-
+process_request()
+respond_to_request()
