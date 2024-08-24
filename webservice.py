@@ -54,11 +54,19 @@ def parse_request_line(request_line):
     else:
         bad_request()
 
+def parse_request_headers(request_headers):
+    print('headers parsed!')
 
-   
+def parse_request_entity(request_entity):
+    print('entity parsed!')
+
+def parse_request(request_line, request_headers, request_entity):
+    parse_request_line(request_line)
+    parse_request_headers(request_headers)
+    parse_request_entity(request_entity)   
 
 
-# Validation variables
+# HTTP Protocol Data
 
 http_methods = ("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "TRACE", "CONNECT")
 uris = ["api/v1.0/countries", "/"]
@@ -71,6 +79,7 @@ request_line = request_file.readline()
 
 
 
-# Parse request line
+# Parse request
 
-parse_request_line(request_line)
+parse_request(request_line, '', '')
+
