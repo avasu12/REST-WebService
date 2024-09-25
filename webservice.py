@@ -1,3 +1,8 @@
+'''
+A program that parses HTTP request messages and responds accordingly
+'''
+
+
 import re
 from datetime import datetime
 
@@ -17,12 +22,16 @@ def check_request_uri(uri):
     print(response)
 
     if uri == no_resource:
-        return true
+        return True
     else:
         print("Under construction")
 
 def check_http_version(version):
     print("Under construction")
+    if version in allowed_versions:
+        return True
+    else:
+        return False
 
 def receive_request():
     request_file = open('enter_request', 'r')
