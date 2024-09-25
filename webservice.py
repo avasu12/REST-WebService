@@ -27,7 +27,6 @@ def check_request_uri(uri):
         print("Under construction")
 
 def check_http_version(version):
-    print("Under construction")
     if version in allowed_versions:
         return True
     else:
